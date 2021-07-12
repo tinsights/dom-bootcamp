@@ -6,14 +6,13 @@ const para = document.createElement('p');
 for(let i = 0; i < emojiArr.length; i+=1) {
   const button = document.createElement('button');
   button.innerText = emojiArr[i];
-  button.addEventListener('click', () => {buttonPress(emojiArr[i], para)});
+  button.addEventListener('click', () => {buttonPress(emojiArr[i])});
   document.body.appendChild(button);
 }
-
-document.body.appendChild(para);
+document.addEventListener('keydown', fn)
 
 // function
-function buttonPress(emoji, para) {
+function buttonPress(emoji) {
   para.innerText = "";
   for(let j = 0; j < 3; j +=1) {
     
@@ -23,27 +22,3 @@ function buttonPress(emoji, para) {
     para.innerHTML += '<br>';
   }
 }
-
-// create buttons
-// const buttonOne = document.createElement('button');
-// buttonOne.innerText = '😎';
-// const buttonTwo = document.createElement('button');
-// buttonTwo.innerText = '🚀';
-// const buttonThree = document.createElement('button');
-// buttonThree.innerText = '🐵';
-
-// Create one par element to be reused
-
-// append para to body for future linebreak addition
-
-
-// append buttons to doc
-// document.body.appendChild(buttonOne)
-// document.body.appendChild(buttonTwo)
-// document.body.appendChild(buttonThree)
-
-// listener to buttons
-// buttonOne.addEventListener('click',  () => {buttonPress('😎', para)});
-// buttonTwo.addEventListener('click',  () => {buttonPress('🚀', para)});
-// buttonThree.addEventListener('click',  () => {buttonPress('🐵', para)});
-
