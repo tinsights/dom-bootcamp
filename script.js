@@ -1,13 +1,15 @@
 // create emoji array
 const emojiArr = ["✌","😂","😝","😁","😱","👉","🙌","🍻","🔥","🌈","☀","🎈","🌹","💄","🎀","⚽","🎾","🏁","😡","👿","🐻","🐶","🐬","🐟","🍀","👀","🚗","🍎","💝","💙","👌","❤","😍","😉","😓","😳","💪","💩","🍸","🔑","💖","🌟","🎉","🌺","🎶","👠","🏈","⚾","🏆","👽","💀","🐵","🐮","🐩","🐎","💣","👃","👂","🍓","💘","💜","👊","💋","😘","😜","😵","🙏","👋","🚽","💃","💎","🚀","🌙","🎁","⛄","🌊","⛵","🏀","🎱","💰","👶","👸","🐰","🐷","🐍","🐫","🔫","👄","🚲","🍉","💛","💚"];
 const movesEmojiArr = ["⭐","🌟","✨","🌌","🌙"]
+const moonArr = ["🌑","🌒","🌓","🌔","🌕","🌖","🌗","🌘","🌚"]
+let moonCycle = 0;
 const para = document.createElement('p');
 const movesButton = document.createElement('button');
-const moveGridSize =10;
+const moveGridSize = 10;
 movesButton.innerText = "Moves"
 movesButton.addEventListener('click', movesFunction);
 
-let currentPosition = [moveGridSize -1, 0];
+let currentPosition = [moveGridSize - 1, 0];
 
 for(let i = 0; i < emojiArr.length; i+=1) {
   const button = document.createElement('button');
@@ -36,7 +38,7 @@ function buttonPress(emoji) {
 
 function movesFunction() {
   para.innerText = "";
-  let emojiSelector = Math.floor(Math.random() * movesEmojiArr.length);
+  moonCycle = moonCycle == moonArr.length - 1 ? 0 : moonCycle + 1;
   for(let i = 0; i < moveGridSize; i +=1) {
     
     for (let j = 0; j < moveGridSize; j +=1) {
@@ -44,7 +46,7 @@ function movesFunction() {
         para.innerText += "🚀";
       }
       else {
-         para.innerText += movesEmojiArr[emojiSelector];
+         para.innerText += moonArr[moonCycle];
       }
     }
     para.innerHTML += '<br>';
@@ -52,7 +54,6 @@ function movesFunction() {
 }
 
 function moveEmoji(arrowKey) {
-  console.log('here');
   switch (arrowKey) {
     case "w":
       currentPosition[0] -=1;
@@ -66,6 +67,12 @@ function moveEmoji(arrowKey) {
       case "d":
       currentPosition[1] +=1;
       break;
+  }
+  if(currentPosition[0] < 0) {
+    currentPosition[0] = moveGridSize- 1;
+  }
+  if(currentPosition[1] == moveGridSize) {
+    currentPosition[1] = 0;
   }
   console.log(currentPosition);
   movesFunction();
